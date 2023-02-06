@@ -1,11 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import getUserData from "./helper/getUserData";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const [data, setData] = useState([]);
+  const [instagramData, setInstagramData] = useState([]);
 
   const getAccessToken = () => {
     const app_id = "1484600968698750";
@@ -17,6 +19,31 @@ function App() {
     const token = window.location.href.split("=")[1];
     setAccessToken(token.split("#")[0]);
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        "https://api.instagram.com/v1/users/self/media/recent",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setInstagramData(result.data);
+      // Save the data to the database
+      // ...
+    };
+    fetchData();
+  }, []);
+  <div>
+    {instagramData.map((data) => (
+      <div key={data.id}>
+        <img src={data.images.thumbnail.url} alt={data.caption} />
+        <p>{data.caption}</p>
+      </div>
+    ))}
+  </div>;
 
   // useEffect(() => {
   //   const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
