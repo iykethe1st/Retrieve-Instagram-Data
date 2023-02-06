@@ -28,7 +28,12 @@ function App() {
             href={`https://api.instagram.com/oauth/authorize/?client_id=${app_id}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`}
             target="_blank"
           >
-            <button onClick={getAccessToken}>Authorize</button>
+            <button
+              className="mt-24 rounded-sm ring-1 p-2"
+              onClick={getAccessToken}
+            >
+              Authorize
+            </button>
           </a>
         )}
       </div>
