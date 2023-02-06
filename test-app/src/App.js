@@ -6,7 +6,7 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const token = "";
   const app_id = "1484600968698750";
-  const redirectUri = "https://iykethe1st.vercel.app/";
+  const redirectUri = "https://retrieve-instagram-data.vercel.app/";
 
   // window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${app_id}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
 
@@ -16,7 +16,7 @@ function App() {
       setAccessToken(token);
     }
   };
-  console.log(token);
+  console.log(accessToken);
 
   return (
     <div className="App">
