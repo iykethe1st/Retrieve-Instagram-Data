@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
-  const token = "";
+
   const app_id = "1484600968698750";
   const redirectUri = "https://retrieve-instagram-data.vercel.app/";
 
@@ -17,7 +17,7 @@ function App() {
   };
 
   if (window.location.hash) {
-    token = window.location.href.split("=")[1];
+    const token = window.location.href.split("=")[1];
     setAccessToken(token);
   }
 
