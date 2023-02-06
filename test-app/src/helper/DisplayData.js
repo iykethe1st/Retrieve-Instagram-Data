@@ -49,9 +49,9 @@ const DisplayData = () => {
         </button>
       )}
 
-      {data.map((feed) => (
+      {/* {data.map((feed) => (
         <Feed key={feed.id} feed={feed} />
-      ))}
+      ))} */}
     </div>
   );
 };
