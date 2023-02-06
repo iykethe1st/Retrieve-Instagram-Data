@@ -8,11 +8,19 @@ function App() {
   const app_id = "1484600968698750";
   const redirectUri = "https://retrieve-instagram-data.vercel.app/";
 
+  // window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${app_id}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
+
   const getAccessToken = () => {
+    const app_id = "1484600968698750";
+    const redirectUri = "https://retrieve-instagram-data.vercel.app/";
     window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${app_id}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`;
+  };
+
+  if (window.location.hash) {
     token = window.location.href.split("=")[1];
     setAccessToken(token);
-  };
+  }
+
   console.log(accessToken);
 
   return (
