@@ -18,15 +18,15 @@ function App() {
     setAccessToken(token.split("#")[0]);
   }
 
-  useEffect(() => {
-    const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
+  // useEffect(() => {
+  const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseData) => setData(responseData.data));
+  fetch(url)
+    .then((response) => response.json())
+    .then((responseData) => setData(responseData.data));
 
-    console.log(data);
-  }, []);
+  console.log(data);
+  // }, []);
 
   return (
     <div className="App">
