@@ -18,15 +18,12 @@ function App() {
     setAccessToken(token.split("#")[0]);
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
-    try {
-      const response = await fetch(url);
-      response = response.json();
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
+
+    const response = fetch(url);
+    response = response.json();
+    console.log(response);
   }, []);
 
   return (
