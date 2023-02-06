@@ -22,7 +22,7 @@ function App() {
     const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
 
     const response = fetch(url);
-    response = response.json();
+
     console.log(response);
   }, []);
 
