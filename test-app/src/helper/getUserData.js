@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const UserData = () => {
+const GetUserData = ({ token }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const accessToken = "YOUR_ACCESS_TOKEN";
-    const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
+    const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${token}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -36,4 +35,4 @@ const UserData = () => {
   );
 };
 
-export default UserData;
+export default GetUserData;
