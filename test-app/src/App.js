@@ -21,9 +21,9 @@ function App() {
   useEffect(() => {
     const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
 
-    const response = fetch(url);
-
-    console.log(response);
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseData) => setData(responseData.data));
   }, []);
 
   return (
