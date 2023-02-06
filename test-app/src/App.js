@@ -1,9 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getUserData from "./helper/getUserData";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
+  const [data, setData] = useState([]);
 
   const getAccessToken = () => {
     const app_id = "1484600968698750";
@@ -16,7 +18,16 @@ function App() {
     setAccessToken(token.split("#")[0]);
   }
 
-  console.log(accessToken);
+  useEffect(async () => {
+    const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
+    try {
+      const response = await fetch(url);
+      response = response.json();
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <div className="App">
