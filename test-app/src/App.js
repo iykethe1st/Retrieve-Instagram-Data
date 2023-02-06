@@ -31,17 +31,15 @@ function App() {
   return (
     <div className="App">
       <div>
-        {accessToken ? (
-          <p>Access Token: {accessToken}</p>
-        ) : (
-          <button
-            className="mt-24 rounded-sm ring-1 p-2"
-            onClick={getAccessToken}
-          >
-            Get Access Token
-          </button>
-        )}
+        <button
+          className="mt-24 rounded-sm ring-1 p-2"
+          onClick={getAccessToken}
+        >
+          Get Access Token
+        </button>
+        <p>Access Token: {accessToken}</p>
       </div>
+      <div>{data}</div>
     </div>
   );
 }
