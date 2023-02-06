@@ -16,7 +16,7 @@ function App() {
     setAccessToken(token);
   }
 
-  console.log(accessToken);
+  console.log(accessToken.split("#")[0]);
 
   return (
     <div className="App">
