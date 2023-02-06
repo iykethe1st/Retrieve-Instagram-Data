@@ -80,13 +80,7 @@ function App() {
     <div className="App ">
       <h1>Instagram Feed with Instagram API</h1>
 
-      {!accessToken && (
-        <button className="ring-2 p-2 rounded " onClick={getAccessToken}>
-          Authorize with Instagram
-        </button>
-      )}
-
-      <DisplayData token={accessToken} limit={12} />
+      <DisplayData />
     </div>
   );
 }
