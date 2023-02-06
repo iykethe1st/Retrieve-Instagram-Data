@@ -13,22 +13,22 @@ function App() {
 
   if (window.location.hash) {
     const token = window.location.href.split("=")[1];
-    setAccessToken(token);
+    setAccessToken(token.split("#")[0]);
   }
 
-  console.log(accessToken.split("#")[0]);
+  console.log(accessToken);
 
   return (
     <div className="App">
       <div>
         {accessToken ? (
-          <p>Access Token: {accessToken} </p>
+          <p>Access Token: {accessToken}</p>
         ) : (
           <button
             className="mt-24 rounded-sm ring-1 p-2"
             onClick={getAccessToken}
           >
-            Authorize
+            Get Access Token
           </button>
         )}
       </div>
