@@ -7,7 +7,6 @@ import getUserData from "./helper/getUserData";
 function App() {
   const [accessToken, setAccessToken] = useState("");
   const [data, setData] = useState([]);
-  const [instagramData, setInstagramData] = useState([]);
 
   const getAccessToken = () => {
     const app_id = "1484600968698750";
@@ -21,29 +20,35 @@ function App() {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get(
-        "https://api.instagram.com/v1/users/self/media/recent",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+    // Check if the access token is in the URL hash
+    const hash = window.location.hash
+      .substring(1)
+      .split("&")
+      .reduce(function (initial, item) {
+        if (item) {
+          var parts = item.split("=");
+          initial[parts[0]] = decodeURIComponent(parts[1]);
         }
-      );
-      setInstagramData(result.data);
-      // Save the data to the database
-      // ...
-    };
-    fetchData();
+        return initial;
+      }, {});
+
+    if (hash.access_token) {
+      setAccessToken(hash.access_token);
+    }
   }, []);
-  <div>
-    {instagramData.map((data) => (
-      <div key={data.id}>
-        <img src={data.images.thumbnail.url} alt={data.caption} />
-        <p>{data.caption}</p>
-      </div>
-    ))}
-  </div>;
+
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+
+    // Make a request to the Instagram API to retrieve the user data
+    fetch(
+      `https://api.instagram.com/v1/users/self/?access_token=${accessToken}`
+    )
+      .then((response) => response.json())
+      .then((data) => setData(data.data));
+  }, [accessToken]);
 
   // useEffect(() => {
   //   const url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${accessToken}`;
@@ -56,17 +61,25 @@ function App() {
   // }, []);
 
   return (
-    <div className="App">
-      <div>
-        <button
-          className="mt-24 rounded-sm ring-1 p-2"
-          onClick={getAccessToken}
-        >
-          Get Access Token
+    <div className="App p-16">
+      {accessToken ? (
+        data ? (
+          <div>
+            <p>Username: {data.username}</p>
+            <p>Full name: {data.full_name}</p>
+            <p>
+              Profile picture:{" "}
+              <img src={data.profile_picture} alt="Profile picture" />
+            </p>
+          </div>
+        ) : (
+          <p>Loading user data...</p>
+        )
+      ) : (
+        <button className="ring-2 p-2 rounded " onClick={getAccessToken}>
+          Authorize with Instagram
         </button>
-        <p>Access Token: {`"${accessToken}"`}</p>
-      </div>
-      <div>{data}</div>
+      )}
     </div>
   );
 }
