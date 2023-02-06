@@ -37,7 +37,7 @@ function App() {
         >
           Get Access Token
         </button>
-        <p>Access Token: {accessToken}</p>
+        <p>Access Token: {`"${accessToken}"`}</p>
       </div>
       <div>{data}</div>
     </div>
