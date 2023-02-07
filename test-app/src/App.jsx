@@ -22,11 +22,12 @@ function App() {
 
   return (
     <div className="App ">
-      <a onClick={getAccessToken} target="_blank">
-        <button className="ring-2 p-2 rounded-sm bg-slate-400 mt-24">
-          Authorize
-        </button>
-      </a>
+      <button
+        onClick={getAccessToken}
+        className="ring-2 p-2 rounded-sm bg-slate-400 mt-24"
+      >
+        Authorize
+      </button>
     </div>
   );
 }
