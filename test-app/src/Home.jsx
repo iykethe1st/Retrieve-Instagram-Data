@@ -8,35 +8,21 @@ const Home = () => {
   const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
 
   const handleClick = () => {
-    // try {
-    //   const response = await fetch(
-    //     `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`,
-    //     {
-    //       method: "GET",
-    //     }
-    //   );
-    // if (!authorizationCode) {
-    //   window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
-
-    // }
     window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
-    // const query = new URLSearchParams(window.location.search);
-    // const code = query.get("code");
-    // if (code) {
-    //   setAuthorizationCode(code);
-    //   retrieveAccessToken(code);
-    // }
-
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
-  if (window.location.hash) {
-    const code = window.location.href.split("=")[1];
+  const query = new URLSearchParams(window.location.search);
+  const code = query.get("code");
+  if (code) {
     setAuthorizationCode(code);
     // retrieveAccessToken(code);
   }
+
+  // if (window.location.hash) {
+  //   const code = window.location.href.split("=")[1];
+  //   setAuthorizationCode(code);
+  //   // retrieveAccessToken(code);
+  // }
 
   const retrieveAccessToken = async (code) => {
     try {
@@ -56,8 +42,8 @@ const Home = () => {
       console.error(error);
     }
   };
-  console.log(accessToken);
-  console.log("-------------------");
+  // console.log(accessToken);
+  // console.log("-------------------");
   console.log(authorizationCode);
 
   return (
