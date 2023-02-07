@@ -10,7 +10,7 @@ const Home = () => {
   const handleClick = async () => {
     const url = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    window.location.href = url;
+    window.location.replace(url);
   };
 
   const query = new URLSearchParams(window.location.search);
