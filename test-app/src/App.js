@@ -21,9 +21,6 @@ function App() {
     return redirect("/");
   }
 
-  const insta_token =
-    "AQDWPcOOS2rSMB8JAoBuabgTDOKqAiBrCU9EN4uxGy02gXCe4BmgtzUNpcPgz-GH_9gabow_qHMyGvS7Da80K6aN4He-29HsSBi_SX_fseaKTjjaQvLiArvRNBlaiiMoc2lELgqpzXhrhw4oqGxiAdruiB7FuaDlZbiJaM3BXCXZFbjQgwUiY0TlaUYirtpRK7QAVL-fjkKNB4A6zMIXEAikn2HCGKrQtbQU6ZakEVCcdQ";
-
   return (
     <div className="App ">
       <a onClick={getAccessToken} target="_blank">
