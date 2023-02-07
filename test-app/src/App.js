@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
-  const location = useLocation();
   const getAccessToken = () => {
     const app_id = "1484600968698750";
     const redirectUri = "https://retrieve-instagram-data.vercel.app/";
