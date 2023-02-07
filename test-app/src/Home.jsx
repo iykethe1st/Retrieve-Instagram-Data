@@ -9,6 +9,9 @@ const Home = () => {
 
   const handleClick = () => {
     window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    setTimeout(() => {
+      window.location.href = url;
+    }, 1000);
   };
 
   const query = new URLSearchParams(window.location.search);
