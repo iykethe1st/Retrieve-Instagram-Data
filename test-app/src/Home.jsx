@@ -7,6 +7,13 @@ const Home = () => {
   const CLIENT_SECRET = "0035ceec7ed2c38f1af236615b75d05e";
   const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
 
+  useEffect(() => {
+    if (window.location.hash) {
+      const token = window.location.hash.split("=")[1];
+      setAccessToken(token);
+    }
+  }, []);
+
   const handleClick = async () => {
     const url = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
     window.location.replace(url);
