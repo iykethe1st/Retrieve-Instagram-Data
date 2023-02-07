@@ -15,13 +15,20 @@ const Home = () => {
     //       method: "GET",
     //     }
     //   );
-    if (authorizationCode === "") {
-      window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
-      if (window.location.hash) {
-        const code = window.location.href.split("=")[1];
-        setAuthorizationCode(code);
-        retrieveAccessToken(code);
-      }
+    // if (!authorizationCode) {
+    //   window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    //   if (window.location.hash) {
+    //     const code = window.location.href.split("=")[1];
+    //     setAuthorizationCode(code);
+    //     retrieveAccessToken(code);
+    //   }
+    // }
+    window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    const query = new URLSearchParams(window.location.search);
+    const code = query.get("code");
+    if (code) {
+      setAuthorizationCode(code);
+      retrieveAccessToken(code);
     }
 
     // } catch (error) {
@@ -50,20 +57,6 @@ const Home = () => {
   console.log(accessToken);
   console.log("-------------------");
   console.log(authorizationCode);
-
-  useEffect(() => {
-    // if (authorizationCode === "") {
-    //   window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
-    //   if (window.location.hash) {
-    //     const code = window.location.href.split("=")[1];
-    //     setAuthorizationCode(code);
-    //     retrieveAccessToken(code);
-    //   }
-    // }
-    if (authorizationCode !== "") {
-      setAuthorizationCode(authorizationCode);
-    }
-  }, [authorizationCode]);
 
   return (
     <div>
