@@ -5,7 +5,7 @@ const Home = () => {
   const [accessToken, setAccessToken] = useState("");
   const CLIENT_ID = "1484600968698750";
   const CLIENT_SECRET = "0035ceec7ed2c38f1af236615b75d05e";
-  const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/auth/";
+  const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
 
   const handleClick = async () => {
     // try {
