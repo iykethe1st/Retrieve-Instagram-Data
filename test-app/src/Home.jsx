@@ -35,7 +35,7 @@ const Home = () => {
   if (window.location.hash) {
     const code = window.location.href.split("=")[1];
     setAuthorizationCode(code);
-    retrieveAccessToken(code);
+    // retrieveAccessToken(code);
   }
 
   const retrieveAccessToken = async (code) => {
