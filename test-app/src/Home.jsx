@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const Home = () => {
-  const [authorizationCode, setAuthorizationCode] = useState("");
-  const [accessToken, setAccessToken] = useState("");
+  const [authorizationCode, setAuthorizationCode] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
   const CLIENT_ID = "1484600968698750";
   const CLIENT_SECRET = "0035ceec7ed2c38f1af236615b75d05e";
   const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
@@ -15,7 +15,9 @@ const Home = () => {
     //       method: "GET",
     //     }
     //   );
-    window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    if (!authorizationCode) {
+      window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    }
     if (window.location.hash) {
       const code = window.location.href.split("=")[1];
       setAuthorizationCode(code);
@@ -60,7 +62,7 @@ const Home = () => {
       ) : null}
       {accessToken ? (
         <div>
-          Access Token: <pre>{accessToken}</pre>
+          Access Token: <span>{accessToken}</span>
         </div>
       ) : null}
     </div>
