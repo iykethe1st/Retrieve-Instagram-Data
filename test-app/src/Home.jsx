@@ -8,10 +8,18 @@ const Home = () => {
   const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
 
   useEffect(() => {
-    if (window.location.hash) {
-      const token = window.location.hash.split("=")[1];
-      setAccessToken(token);
-    }
+    const handleHashChange = () => {
+      if (window.location.hash) {
+        const token = window.location.hash.split("=")[1];
+        setAccessToken(token);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   const handleClick = async () => {
