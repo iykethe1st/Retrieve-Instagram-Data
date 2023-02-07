@@ -22,7 +22,7 @@ const Home = () => {
     };
   }, []);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     const url = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
     window.location.replace(url);
   };
@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>
+      <button onClick={() => handleClick()}>
         Retrieve Authorization Code and Access Token
       </button>
       {authorizationCode ? (
@@ -72,11 +72,11 @@ const Home = () => {
           Authorization Code: <pre>{authorizationCode}</pre>
         </div>
       ) : null}
-      {accessToken ? (
+      {/* {accessToken ? (
         <div>
           Access Token: <span>{accessToken}</span>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
