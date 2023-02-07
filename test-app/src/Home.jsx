@@ -7,7 +7,7 @@ const Home = () => {
   const CLIENT_SECRET = "0035ceec7ed2c38f1af236615b75d05e";
   const REDIRECT_URI = "https://retrieve-instagram-data.vercel.app/";
 
-  const handleClick = async () => {
+  const handleClick = () => {
     // try {
     //   const response = await fetch(
     //     `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`,
@@ -15,7 +15,7 @@ const Home = () => {
     //       method: "GET",
     //     }
     //   );
-    if (!authorizationCode) {
+    if (authorizationCode === null) {
       window.location.href = `https://api.instagram.com/oauth/authorize/?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
       if (window.location.hash) {
         const code = window.location.href.split("=")[1];
