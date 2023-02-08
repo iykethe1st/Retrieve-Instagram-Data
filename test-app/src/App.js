@@ -3,6 +3,7 @@ import "./App.css";
 import Home, { getData } from "./Home";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import FirebaseSave from "./FirebaseSave";
 
 function App() {
   const [data, setData] = useState([]);
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <Home feed={data} />
+      <FirebaseSave userData={data} />
     </div>
   );
 }
